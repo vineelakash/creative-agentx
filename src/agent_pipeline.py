@@ -1,7 +1,10 @@
 import os
 import time
 from typing import Dict, List, Any
-from .utils import clean_text, safe_format
+
+# FIXED: replace relative import with direct import
+from utils import clean_text, safe_format
+
 
 class CreativeAgent:
     def __init__(self, offline_mode: bool = False):
@@ -16,7 +19,7 @@ class CreativeAgent:
         """
         Simulates LLM generation for offline mode.
         """
-        time.sleep(0.5) # Simulate latency
+        time.sleep(0.5)  # Simulate latency
         if task_type == "outline":
             return """
             I. Introduction
@@ -42,7 +45,7 @@ class CreativeAgent:
             
             Conclusion:
             In summary, this is a critical area for further study.
-            (Generated in offline mode for prompt: {prompt[:30]}...)
+            (Generated in offline mode for prompt: {prompt[:30]}... )
             """
         elif task_type == "script":
             return """
@@ -72,7 +75,6 @@ class CreativeAgent:
         prompt = f"Create a 4-section outline for a blog post about: {topic}"
         if self.offline_mode:
             return self._mock_generate(prompt, "outline")
-        # Real LLM call would go here
         return self._mock_generate(prompt, "outline")
 
     def generate_blog(self, topic: str, outline: str, audience: str, tone: str) -> str:
@@ -89,30 +91,26 @@ class CreativeAgent:
 
     def generate_image_prompts(self, topic: str) -> List[str]:
         prompt = f"Generate 3 image prompts for a blog about {topic}."
-        if self.offline_mode:
-            content = self._mock_generate(prompt, "prompts")
-        else:
-            content = self._mock_generate(prompt, "prompts")
+        content = self._mock_generate(prompt, "prompts")
         
-        # Parse the list
         prompts = [p.strip() for p in content.split('\n') if p.strip() and p[0].isdigit()]
         return prompts if prompts else ["Prompt 1", "Prompt 2", "Prompt 3"]
 
     def run(self, topic: str, audience: str, tone: str) -> Dict[str, Any]:
         print(f"--- Starting Creative Agent Pipeline for topic: {topic} ---")
-        
+
         print("Generating Outline...")
         outline = self.generate_outline(topic)
-        
+
         print("Expanding into Blog Post...")
         blog_post = self.generate_blog(topic, outline, audience, tone)
-        
+
         print("Generating Video Script...")
         video_script = self.generate_video_script(topic)
-        
+
         print("Generating Image Prompts...")
         image_prompts = self.generate_image_prompts(topic)
-        
+
         return {
             "topic": topic,
             "audience": audience,
@@ -122,6 +120,7 @@ class CreativeAgent:
             "video_script": clean_text(video_script),
             "image_prompts": image_prompts
         }
+
 
 if __name__ == "__main__":
     agent = CreativeAgent(offline_mode=True)
