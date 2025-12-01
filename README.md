@@ -22,4 +22,47 @@ The agent converts a short seed (topic + tone + audience) into:
 ---
 
 ## 📂 Repository Structure
+creative-agentx/
+│
+├── README.md
+├── LICENSE
+│
+├── notebook/
+│ └── creative_agent.ipynb
+│
+├── data/
+│ └── sample_dataset.csv
+│
+├── outputs/
+│ ├── creative_agent_output.json
+│ └── example_blog.txt
+│
+├── presentation/
+│ └── creative_agent_presentation.pptx
+│
+└── src/
+├── agent_pipeline.py
+├── evaluator.py
+└── utils.py
+
+---
+
+## 📘 Notebook
+
+The main notebook used for running the agent:
+
+➡ `notebook/creative_agent.ipynb`
+
+---
+
+## 📝 Kaggle Writeup
+
+This repository supports my submission for the **Kaggle Agents Intensive Capstone Project (Creative Track)**.
+
+---
+
+## 📬 Contact
+
+**Author:** Vineelakash Chichadi  
+**Project:** Creative Track — AI Content Generation Agent
 
